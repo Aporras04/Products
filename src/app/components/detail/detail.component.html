@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div *ngIf="product" class="row animate_animated animate_bounce animate_fadeIn">
+        <div class="col-md-9">
+            <p><strong>Producto:</strong> {{product.title}}</p>
+        </div>
+
+        <div class="col-md-3">
+            <div style="margin-bottom: 1rem;">
+                <a class="btn btn-danger" routerLink="/">Back</a>
+            </div>
+            <div>
+                <button onclick="getElementById('more-details').style.display = 'block'" type="button"
+                    class="btn btn-info">More Details</button>
+            </div>
+
+        </div>
+    </div>
+    <div id="more-details" *ngIf="product" style="margin-top: 3rem; width: 80%; display: none;">
+        <mat-tab-group>
+            <mat-tab label="Price">{{product.price}}</mat-tab>
+            <mat-tab label="Description">{{product.description}}</mat-tab>
+            <mat-tab label="Category">{{product.category}}</mat-tab>
+            <mat-tab label="Image"><img style="width: 50%; height: auto;" class="rounded" src="{{product.image}}"
+                    alt=""></mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
