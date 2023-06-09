@@ -7,22 +7,39 @@
         <button onclick="getElementById('list').style.display = 'none'; getElementById('cards').style.display = 'flex';"
             id="btn_cards"><i class="fa fa-th-large" aria-hidden="true"></i></button>
     </div>
-    <ul id="list" class="list-group">
-        <a *ngFor="let l of list" [routerLink]="['/detail', l.id]"
-            class="list-group-item list-group-item-action fade-in-content">
-            {{l.id}} - {{l.title}}
-        </a>
-    </ul>
 
-    <div id="cards" style="display: flex; flex-wrap: wrap; justify-content: center; display: none;">
-        <a class="fade-in-content" style="text-decoration: none; color: black;" *ngFor="let l of list"
-            [routerLink]="['/detail', l.id]">
-            <div class="card" style="width: 18rem; min-height: 200px;">
-                <div class="card-body">
-                    <h5 class="card-title">{{l.id}}</h5>
-                    <p class="card-text">{{l.title}}</p>
-                </div>
+    <div *ngIf="loading; else content">
+
+        <div class="spinner__loading">
+            <div>
+                <mat-progress-spinner mode="indeterminate" style="margin-right: auto; margin-left: auto;">
+                </mat-progress-spinner>
             </div>
-        </a>
+        </div>
     </div>
+
+    <ng-template #content>
+        <ul id="list" class="list-group">
+            <a *ngFor="let l of list" [routerLink]="['/detail', l.id]"
+                class="list-group-item list-group-item-action fade-in-content">
+                {{l.id}} - {{l.title}}
+            </a>
+        </ul>
+
+        <div id="cards" style="display: flex; flex-wrap: wrap; justify-content: center; display: none;">
+            <a class="fade-in-content" style="text-decoration: none; color: black;" *ngFor="let l of list"
+                [routerLink]="['/detail', l.id]">
+                <div class="card" style="width: 18rem; min-height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{l.id}}</h5>
+                        <p class="card-text">{{l.title}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </ng-template>
+
+
+
+
 </div>

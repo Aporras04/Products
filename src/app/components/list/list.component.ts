@@ -9,11 +9,17 @@ import { ListService } from 'src/app/services/list.service';
 })
 export class ListComponent {
 
-  list: Pokemon[] = []
+  list: Pokemon[] = [];
+  loading = true;
 
   constructor(private listService: ListService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.listService.getAllPokemons().subscribe((list) => this.list = list);
+    setTimeout(() => {
+      this.loading = false;
+    },
+      2000);
   }
 }
